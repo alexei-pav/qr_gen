@@ -1,7 +1,4 @@
 #include "main.hpp"
-#include <SFML/Graphics/Image.hpp>
-#include <cmath>
-#include <iostream>
 
 int main(int argc, char *argv[]) {
 
@@ -34,39 +31,15 @@ int main(int argc, char *argv[]) {
         return 1;
     }
 
-    // create an image | создаём изображение
-    sf::Image image;
-    image.create(side, side, sf::Color::White);
 
-    int module_size = static_cast<int>(side / 21);
+    QR qr_code(side);
 
-    draw_module(module_size, 0, 0, &image);
-    draw_module(module_size, 2, 2, &image);
-
-    // save the image to a file | сохраняем изображение в файл
-    if (!image.saveToFile("output.png")) {
-        std::cerr << "Failed to save image." << std::endl;
-        return 1;
-    }
-
-    std::cout << "Image created successfully." << std::endl;
-    return 0;
-}
-
-void draw_module(int module_size, int start_x, int start_y, sf::Image* image)
-{
-    if (image == nullptr){
-        std::cerr << "nullptr at: " << "\n  file: " <<__FILE__
-            << "\n  line: " << __LINE__ << std::endl;
-        return;
-    } else {
-        start_x *= module_size;
-        start_y *= module_size;
-        for (int x = 0; x < module_size; x++){
-            for (int y = 0; y < module_size; y++){
-                image->setPixel(start_x + x, start_y + y, sf::Color(0, 0, 0));
-            }
+    for (char x = 0; x < QR_MODULES; x++){
+        for (char y = 0; y < QR_MODULES; y++){
+            qr_code.draw_module(x, y);
         }
     }
-}
+    qr_code.save_image("out.png");
 
+    return 0;
+}

@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # Add executable
-add_executable(qr-gen src/main.cpp)
+add_executable(qr-gen src/main.cpp src/draw_code.cpp)
 
 # We need to find SFML
 find_package(SFML 2.6 COMPONENTS graphics window REQUIRED)
