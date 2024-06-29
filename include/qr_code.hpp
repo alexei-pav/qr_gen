@@ -1,5 +1,5 @@
-#ifndef DRAW_CODE_HPP
-#define DRAW_CODE_HPP
+#ifndef QR_CODE_HPP
+#define QR_CODE_HPP
 
 #define QR_MODULES 21
 
@@ -20,6 +20,15 @@ class QR {
 
         // draw a module (QR) | рисует модуль (QR)
         void draw_module(unsigned int x, unsigned int y);
+
+        // numeric encoding | цифровое кодирование
+        std::string numeric_encoding(std::string string_to_encode);
+
+        // alphanumeric encoding | цифро-буквенное кодирование
+        std::string alphanumeric_encoding(std::string string_to_encode);
+
+        // byte encoding | байтовое кодирование
+        std::string byte_encoding(std::string string_to_encode);
 
         // save an image | сохраняет изображение
         bool save_image();

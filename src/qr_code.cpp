@@ -1,7 +1,6 @@
-#include "draw_code.hpp"
-#include <csignal>
+#include "qr_code.hpp"
 
-QR::QR(unsigned int side) : qr_side(side), qr_filename("output.png") {
+QR::QR(unsigned int side) : qr_side(side), qr_filename("output.jpg") {
     module_size = static_cast<int>(side / qr_modules);
     image.create(qr_side, qr_side, sf::Color::White);
 }
@@ -17,16 +16,16 @@ QR::~QR(){
 
 bool QR::save_image() {
     if (!image.saveToFile(qr_filename)) {
-        return 1;
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 bool QR::save_image(std::string filename) {
     if (!image.saveToFile(filename)) {
-        return 1;
+        return 0;
     }
-    return 0;
+    return 1;
 }
 
 

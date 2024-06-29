@@ -32,14 +32,16 @@ int main(int argc, char *argv[]) {
     }
 
 
-    QR qr_code(side);
+    QR qr_code(side, "qr-code.jpg");
 
-    for (char x = 0; x < QR_MODULES; x++){
-        for (char y = 0; y < QR_MODULES; y++){
+    for (char x = 0; x < QR_MODULES; x += 2){
+        for (char y = 0; y < QR_MODULES; y += 2){
             qr_code.draw_module(x, y);
         }
     }
-    qr_code.save_image("out.png");
+
+    if (qr_code.save_image())
+        std::cout << "File saved!" << std::endl;
 
     return 0;
 }
